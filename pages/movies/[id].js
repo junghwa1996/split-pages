@@ -1,1 +1,3 @@
-// <>Movie 페이지</>
+export default function Movies(){
+  return <div>Movies 페이지</div>;
+}
