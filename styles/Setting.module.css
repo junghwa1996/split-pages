@@ -7,6 +7,10 @@
   line-height: 38px;
 }
 
+:global(.light) .title {
+  border-color: #e1e1e1;
+}
+
 .sectionTitle {
   margin: 35px 0 25px;
   font-style: normal;

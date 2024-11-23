@@ -7,6 +7,11 @@
   font-size: 18px;
 }
 
+:global(.light) .input {
+  background-color: #f9f9f9;
+  color: #1f1f1f;
+}
+
 .input::placeholder {
   color: #b5b5b5;
 }

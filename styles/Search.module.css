@@ -9,3 +9,7 @@
 .keyword {
   font-weight: 700;
 }
+
+:global(.light) .keyword {
+  color: #1f1f1f;
+}

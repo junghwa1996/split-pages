@@ -10,6 +10,11 @@
   color: #b5b5b5;
 }
 
+:global(.light) .input {
+  background-color: #e1e1e1;
+  color: #505050;
+}
+
 .arrow {
   transform: rotate(180deg);
   transition: transform 0.2s ease;
@@ -35,6 +40,11 @@
   color: #b5b5b5;
 }
 
+:global(.light) .options {
+  background-color: #e1e1e1;
+  color: #505050;
+}
+
 .opened .options {
   transform: scaleY(1);
 }
@@ -47,4 +57,9 @@
 .option.selected,
 .option:hover {
   background-color: #505050;
+}
+
+:global(.light) .option.selected,
+:global(.light) .option:hover {
+  background-color: #cfcfcf;
 }

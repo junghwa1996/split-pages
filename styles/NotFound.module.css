@@ -15,6 +15,10 @@
   text-align: center;
 }
 
+:global(.light) .content {
+  color: #121212;
+}
+
 .button {
   width: 100%;
   max-width: 250px;
