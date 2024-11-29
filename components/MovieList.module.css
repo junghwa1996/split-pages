@@ -10,9 +10,9 @@
   padding: 10px 20px;
 }
 
-.poster {
-  position: relative;
+.posterContainer {
   display: block;
+  position: relative;
   border-radius: 10px;
   aspect-ratio: 27 / 40;
   width: 100%;

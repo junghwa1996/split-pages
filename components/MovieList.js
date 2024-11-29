@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './MovieList.module.css';
 import StarRating from './StarRating';
-import Image from 'next/image';
 
 export default function MovieList({ className = '', movies }) {
   return (
@@ -9,7 +9,7 @@ export default function MovieList({ className = '', movies }) {
       {movies.map((movie) => (
         <li key={movie.id}>
           <Link href={`/films/${movie.id}`}>
-            <div className={styles.poster}>
+            <div className={styles.posterContainer}>
               <Image fill src={movie.posterUrl} alt={movie.title} />
             </div>
           </Link>

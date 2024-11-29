@@ -1,13 +1,10 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import axios from '@/lib/axios';
-
-import styles from '@/styles/Movie.module.css';
-
-import Container from '@/components/Container';
-import Header from '@/components/Header';
-import MovieReviewList from '@/components/MovieReviewList';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import MovieReviewList from '@/components/MovieReviewList';
+import styles from '@/styles/Movie.module.css';
+import axios from '@/lib/axios';
+import starImg from '@/public/star-filled.svg';
 
 const labels = {
   rating: {
@@ -24,21 +21,22 @@ export default function Movie() {
   const router = useRouter();
   const id = router.query['id'];
 
-  async function getMovie(targetid) {
-    const res = await axios.get(`/movies/${targetid}`);
+  async function loadMovie(targetId) {
+    const res = await axios.get(`/movies/${targetId}`);
     const nextMovie = res.data;
     setMovie(nextMovie);
   }
-  async function getMovieReviews(targetid) {
-    const res = await axios.get(`/movie_reviews/?movie_id=${targetid}`);
+
+  async function loadMovieReviews(targetId) {
+    const res = await axios.get(`/movie_reviews/?movie_id=${targetId}`);
     const nextMovieReviews = res.data.results ?? [];
     setMovieReviews(nextMovieReviews);
   }
 
   useEffect(() => {
     if (id) {
-      getMovie(id);
-      getMovieReviews(id);
+      loadMovie(id);
+      loadMovieReviews(id);
     }
   }, [id]);
 
@@ -47,7 +45,7 @@ export default function Movie() {
   return (
     <>
       <div className={styles.header}>
-        <div className={styles.poster}>
+        <div className={styles.posterContainer}>
           <Image fill src={movie.posterUrl} alt={movie.name} />
         </div>
         <div className={styles.info}>
@@ -71,7 +69,11 @@ export default function Movie() {
                 <th>러닝타임</th> <td>{movie.runningTime}분</td>
               </tr>
               <tr>
-                <th>평점</th> <td className={styles.starRating}>★{movie.starRating}</td>
+                <th>평점</th>{' '}
+                <td className={styles.starRating}>
+                  <Image src={starImg} alt="★" />
+                  {movie.starRating}
+                </td>
               </tr>
             </tbody>
           </table>

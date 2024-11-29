@@ -12,3 +12,16 @@
   align-items: center;
   padding: 26px 0;
 }
+
+.setting {
+  background-image: url("/setting-white.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+}
+
+:global(.light) .setting {
+  background-image: url("/setting-black.svg");
+}

@@ -8,10 +8,10 @@
   gap: 30px;
 }
 
-.poster {
-  position: relative;
+.posterContainer {
   aspect-ratio: 27 / 40;
   width: 350px;
+  position: relative;
 }
 
 .info {
