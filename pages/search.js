@@ -6,21 +6,19 @@ import styles from '@/styles/Search.module.css';
 import axios from '@/lib/axios';
 import Head from 'next/head';
 
-export default function Search() {
-  const [movies, setMovies] = useState([]);
-  const router = useRouter();
-  const q = router.query['q'];
+export async function getServerSideProps(context) {
+  const q = context.query['q'];
+  const res = await axios.get(`/movies?q=${q}`);
+  const movies = res.data.results ?? [];
+  return {
+    props: {
+      movies,
+      q,
+    },
+  };
+}
 
-  async function getMovies(query) {
-    const res = await axios.get(`/movies?q=${query}`);
-    const movies = res.data.results ?? [];
-    setMovies(movies);
-  }
-
-  useEffect(() => {
-    getMovies(q);
-  }, [q]);
-
+export default function Search({ movies, q }) {
   return (
     <>
       <Head>
