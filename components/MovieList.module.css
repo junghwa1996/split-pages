@@ -11,6 +11,7 @@
 }
 
 .poster {
+  position: relative;
   display: block;
   border-radius: 10px;
   aspect-ratio: 27 / 40;

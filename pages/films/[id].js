@@ -7,6 +7,7 @@ import styles from '@/styles/Movie.module.css';
 import Container from '@/components/Container';
 import Header from '@/components/Header';
 import MovieReviewList from '@/components/MovieReviewList';
+import Image from 'next/image';
 
 const labels = {
   rating: {
@@ -46,7 +47,9 @@ export default function Movie() {
   return (
     <>
       <div className={styles.header}>
-        <img className={styles.poster} src={movie.posterUrl} alt={movie.name} />
+        <div className={styles.poster}>
+          <Image fill src={movie.posterUrl} alt={movie.name} />
+        </div>
         <div className={styles.info}>
           <div className={styles.englishTitle}>{movie.englishTitle}</div>
           <h1 className={styles.title}>{movie.title}</h1>
@@ -68,8 +71,7 @@ export default function Movie() {
                 <th>러닝타임</th> <td>{movie.runningTime}분</td>
               </tr>
               <tr>
-                <th>평점</th>{' '}
-                <td className={styles.starRating}>★{movie.starRating}</td>
+                <th>평점</th> <td className={styles.starRating}>★{movie.starRating}</td>
               </tr>
             </tbody>
           </table>
