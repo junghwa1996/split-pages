@@ -5,6 +5,7 @@ import MovieReviewList from '@/components/MovieReviewList';
 import styles from '@/styles/Movie.module.css';
 import axios from '@/lib/axios';
 import starImg from '@/public/star-filled.svg';
+import Head from 'next/head';
 
 const labels = {
   rating: {
@@ -44,9 +45,12 @@ export default function Movie() {
 
   return (
     <>
+      <Head>
+        <title>{movie.title} - watchit</title>
+      </Head>
       <div className={styles.header}>
         <div className={styles.posterContainer}>
-          <Image fill src={movie.posterUrl} alt={movie.name} />
+          <Image fill src={movie.posterUrl} alt={movie.name || 'Movie poster'} />
         </div>
         <div className={styles.info}>
           <div className={styles.englishTitle}>{movie.englishTitle}</div>
@@ -54,24 +58,29 @@ export default function Movie() {
           <table className={styles.infoTable}>
             <tbody>
               <tr>
-                <th>개봉</th> <td>{movie.date}</td>
+                <th>개봉</th>
+                <td>{movie.date}</td>
               </tr>
               <tr>
-                <th>장르</th> <td>{movie.genre}</td>
+                <th>장르</th>
+                <td>{movie.genre}</td>
               </tr>
               <tr>
-                <th>국가</th> <td>{movie.country}</td>
+                <th>국가</th>
+                <td>{movie.country}</td>
               </tr>
               <tr>
-                <th>등급</th> <td>{labels.rating[movie.rating]}</td>
+                <th>등급</th>
+                <td>{labels.rating[movie.rating]}</td>
               </tr>
               <tr>
-                <th>러닝타임</th> <td>{movie.runningTime}분</td>
+                <th>러닝타임</th>
+                <td>{movie.runningTime}분</td>
               </tr>
               <tr>
-                <th>평점</th>{' '}
+                <th>평점</th>
                 <td className={styles.starRating}>
-                  <Image src={starImg} alt="★" />
+                  <Image src={starImg} alt='평점 아이콘' />
                   {movie.starRating}
                 </td>
               </tr>
