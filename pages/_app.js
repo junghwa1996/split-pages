@@ -18,10 +18,12 @@ export default function App({ Component, pageProps }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <ThemeProvider>
-        <Header />
-        <Container page>
-          <Component {...pageProps} />
-        </Container>
+        <div className={notoSansKR.className}>
+          <Header />
+          <Container page>
+            <Component {...pageProps} />
+          </Container>
+        </div>
       </ThemeProvider>
     </>
   );
