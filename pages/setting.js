@@ -1,7 +1,7 @@
+import Head from 'next/head';
 import Dropdown from '@/components/Dropdown';
 import { useTheme } from '@/lib/ThemeContext';
 import styles from '@/styles/Setting.module.css';
-import Head from 'next/head';
 
 export default function Setting() {
   const { theme, setTheme } = useTheme();
@@ -21,7 +21,7 @@ export default function Setting() {
         <h2 className={styles.sectionTitle}>테마 설정</h2>
         <Dropdown
           className={styles.dropdown}
-          name='theme'
+          name="theme"
           value={theme}
           options={[
             { label: '다크', value: 'dark' },

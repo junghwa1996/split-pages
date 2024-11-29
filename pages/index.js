@@ -7,9 +7,7 @@ export async function getStaticProps() {
   const res = await axios.get('/movies/');
   const movies = res.data.results ?? [];
   return {
-    props: {
-      movies,
-    },
+    props: { movies },
   };
 }
 
