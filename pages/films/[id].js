@@ -16,17 +16,43 @@ const labels = {
   },
 };
 
-export default function Movie() {
-  const [movie, setMovie] = useState();
+export async function getStaticPaths() {
+  const res = await axios.get('/movies/');
+  const movies = res.data.results ?? [];
+  const paths = movies.map((movie) => ({
+    params: { id: String(movie.id) },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
+  const id = context.params['id'];
+
+  let movie;
+  try {
+    const res = await axios.get(`/movies/${id}`);
+    movie = res.data;
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      movie,
+    },
+  };
+}
+
+export default function Movie({ movie }) {
   const [movieReviews, setMovieReviews] = useState([]);
   const router = useRouter();
   const id = router.query['id'];
-
-  async function loadMovie(targetId) {
-    const res = await axios.get(`/movies/${targetId}`);
-    const nextMovie = res.data;
-    setMovie(nextMovie);
-  }
 
   async function loadMovieReviews(targetId) {
     const res = await axios.get(`/movie_reviews/?movie_id=${targetId}`);
@@ -36,12 +62,18 @@ export default function Movie() {
 
   useEffect(() => {
     if (id) {
-      loadMovie(id);
       loadMovieReviews(id);
     }
   }, [id]);
 
-  if (!movie) return null;
+  if (!movie) {
+    return (
+      <div className={styles.loading}>
+        <Spinner />
+        <p>로딩중입니다. 잠시만 기다려주세요.</p>
+      </div>
+    );
+  }
 
   return (
     <>
